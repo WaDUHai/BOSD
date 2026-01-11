@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fake BSOD</title>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0078d7;
+    color: white;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.bsod {
+    text-align: center;
+    max-width: 600px;
+}
+.face { font-size: 100px; margin-bottom: 20px; }
+.text { font-size: 22px; line-height: 1.6; opacity: 0.95; margin-bottom: 20px; }
+.dots { font-size: 22px; opacity: 0.9; margin-bottom: 20px; }
+.qr { margin: 25px 0; }
+.small { font-size: 18px; opacity: 0.85; }
+a { color: #cce7ff; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="bsod">
+    <div class="face">:(</div>
+
+    <div class="text">
+        Your PC ran into a problem and needs to restart.<br>
+        We're just collecting some error info, and then we'll restart for you.
+    </div>
+
+    <div class="dots" id="dots">.</div>
+
+    <div class="qr" id="qrcode"></div>
+
+    <div class="small">
+        For more information about this issue and possible fixes, visit<br>
+        <a href="http://windows.com/stopcode">http://windows.com/stopcode</a><br><br>
+        If you call a support person, give them this info:<br>
+        Stop Code: SYS_EXCEPTION_PONIES_NOT_HANDLED
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+<script>
+// QR Code pointing to Facebook share
+new QRCode(document.getElementById("qrcode"), {
+    text: "https://www.facebook.com/share/1HRQVdyeLb/",
+    width: 140,
+    height: 140,
+    colorDark: "#ffffff",
+    colorLight: "#0078D7",
+    correctLevel: QRCode.CorrectLevel.H
+});
+
+// Animated dots
+let dots = document.getElementById('dots');
+let count = 0;
+setInterval(() => {
+    count = (count + 1) % 4;
+    dots.textContent = '.'.repeat(count);
+}, 500);
+</script>
+
+</body>
+</html>
